@@ -1,20 +1,26 @@
+
+   
 import React, { useEffect } from 'react'
 import useWordle from '../hooks/useWordle'
 
-const Wordle = ({ solution }) => {
+export default function Wordle({ solution }) {
+  const { currentGuess, guesses, turn, isCorrect, handleKeyup } = useWordle(solution)
+  
+  useEffect(() => {
+    window.addEventListener('keyup', handleKeyup)
 
-
-  const { currentGuess, handleKeyup } = useWordle(solution);
+    return () => window.removeEventListener('keyup', handleKeyup)
+  }, [handleKeyup])
 
   useEffect(() => {
-      window.addEventListener('keyup', handleKeyup)
+    console.log(guesses, turn, isCorrect)
+  }, [guesses, turn, isCorrect])
 
-      return () => window.removeEventListener('keyup', handleKeyup)
-  })
   return (
-  <div>Current guess - {currentGuess}</div>
+    <div>
+      {turn}
+      <div>solution - {solution}</div>
+      <div>Current Guess - {currentGuess}</div>
+    </div>
   )
-};
-
-
-export default Wordle;
+}

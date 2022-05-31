@@ -16,8 +16,10 @@ function App() {
   }, [setSolution])
   
   return (
+    
     <div className="App">
      <h1>Wordle</h1>
+     {/* wordle solution added as prop */}
      {solution && <Wordle solution={solution} />}
     </div>
   );
