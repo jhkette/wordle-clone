@@ -15,14 +15,14 @@ export default function Wordle({ solution }) {
   }, [handleKeyup]);
 
   useEffect(() => {
-    console.log(guesses, turn, isCorrect);
+    // console.log(guesses, turn, isCorrect);
   }, [guesses, turn, isCorrect]);
 
   return (
     <div>
       <Grid currentGuess={currentGuess} guesses={guesses} turn={turn} />
-      <div>solution - {solution}</div>
-      <div>Current Guess - {currentGuess}</div>
+     
+     
     </div>
   );
 }

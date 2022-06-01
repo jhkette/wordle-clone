@@ -16,7 +16,6 @@ const useWordle = (solution) => {
     let formattedGuess = [...currentGuess].map((l) => {
       return { key: l, color: "grey" };
     });
-    console.log("formatting the guess", currentGuess);
     // check if foreach solutionArray[i] == l.key
     // then add color green to each color if this is true
     formattedGuess.forEach((l, i) => {
