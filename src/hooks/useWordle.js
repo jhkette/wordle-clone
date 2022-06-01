@@ -1,11 +1,11 @@
 import { useState } from "react";
 
 const useWordle = (solution) => {
-  const [turn, setTurn] = useState(0);
-  const [currentGuess, setCurrentGuess] = useState("");
+  const [turn, setTurn] = useState(0); // state for turn
+  const [currentGuess, setCurrentGuess] = useState(""); // state for guess
   const [guesses, setGuesses] = useState([...Array(6)]); // each guess is an array
   const [history, setHistory] = useState(["hello"]); // each guess is a string
-  const [isCorrect, setIsCorrect] = useState(false);
+  const [isCorrect, setIsCorrect] = useState(false); // state for if guess is correct
 
   // format a guess into an array of letter objects
   // e.g. [{key: 'a', color: 'yellow'}]
@@ -25,10 +25,12 @@ const useWordle = (solution) => {
         solutionArray[i] = null;
       }
     });
+    // if solutionArray includes l.key and is not green it is in
+    // letter array but not in place so make it yellow
     formattedGuess.forEach((l, i) => {
-      if (solutionArray.includes(l.key) && l.color !== 'green'){
-          formattedGuess[i].color = 'yellow'  
-        }
+      if (solutionArray.includes(l.key) && l.color !== "green") {
+        formattedGuess[i].color = "yellow";
+      }
     });
     return formattedGuess;
   };
@@ -38,21 +40,21 @@ const useWordle = (solution) => {
   // add one to the turn state
   const addNewGuess = (formattedGuess) => {
     if (currentGuess === solution) {
-      setIsCorrect(true)
+      setIsCorrect(true);
     }
-    setGuesses(prevGuesses => {
-      let newGuesses = [...prevGuesses]
-      newGuesses[turn] = formattedGuess
-      return newGuesses
-    })
-    setHistory(prevHistory => {
-      return [...prevHistory, currentGuess]
-    })
-    setTurn(prevTurn => {
-      return prevTurn + 1
-    })
-    setCurrentGuess('')
-  }
+    setGuesses((prevGuesses) => {
+      let newGuesses = [...prevGuesses];
+      newGuesses[turn] = formattedGuess;
+      return newGuesses;
+    });
+    setHistory((prevHistory) => {
+      return [...prevHistory, currentGuess];
+    });
+    setTurn((prevTurn) => {
+      return prevTurn + 1;
+    });
+    setCurrentGuess("");
+  };
 
   // handle keyup event & track current guess
   // if user presses enter, add the new guess
@@ -71,8 +73,8 @@ const useWordle = (solution) => {
         return;
       }
 
-       const formatted = formatGuess()
-      addNewGuess(formatted)
+      const formatted = formatGuess();
+      addNewGuess(formatted);
     }
     if (key == "Backspace") {
       setCurrentGuess((prev) => {
