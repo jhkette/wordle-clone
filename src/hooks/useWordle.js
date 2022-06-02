@@ -1,13 +1,15 @@
 import { useState } from "react";
 
-const useWordle = (solution) => {
+const useWordle = (solution, dictionary) => {
   const [turn, setTurn] = useState(0); // state for turn
   const [currentGuess, setCurrentGuess] = useState(""); // state for guess
   const [guesses, setGuesses] = useState([...Array(6)]); // each guess is an array
-  const [history, setHistory] = useState(["hello"]); // each guess is a string
+  const [history, setHistory] = useState([]); // each guess is a string
   const [isCorrect, setIsCorrect] = useState(false); // state for if guess is correct
+  const [usedKeys, setUsedKeys] = useState({}) // {a: 'green', b: 'yellow'}
 
-  // format a guess into an array of letter objects
+  // format a guess into an array of letter objects. This function is called
+  // when the user presses enter and the guess is a valid guess
   // e.g. [{key: 'a', color: 'yellow'}]
   const formatGuess = () => {
     //   solutionArray - solution into array to split word
@@ -52,13 +54,34 @@ const useWordle = (solution) => {
     setTurn((prevTurn) => {
       return prevTurn + 1;
     });
+    setUsedKeys(prevUsedKeys => {
+      formattedGuess.forEach(l => {
+        const currentColor = prevUsedKeys[l.key]
+
+        if (l.color === 'green') {
+          prevUsedKeys[l.key] = 'green'
+          return
+        }
+        if (l.color === 'yellow' && currentColor !== 'green') {
+          prevUsedKeys[l.key] = 'yellow'
+          return
+        }
+        if (l.color === 'grey' && currentColor !== ('green' || 'yellow')) {
+          prevUsedKeys[l.key] = 'grey'
+          return
+        }
+      })
+
+      return prevUsedKeys
+    })
     setCurrentGuess("");
   };
 
   // handle keyup event & track current guess
-  // if user presses enter, add the new guess
+  // if user presses enter, add the new guess (if the guess is valid)
   const handleKeyup = ({ key }) => {
     if (key == "Enter") {
+      console.log(dictionary)
       if (turn > 5) {
         console.log("you used all your guesses");
         return;
@@ -71,7 +94,10 @@ const useWordle = (solution) => {
         console.log("word must be 5 chars long");
         return;
       }
-
+      if(!dictionary.includes(currentGuess)){
+        console.log('must be a word')
+        return
+      }
       const formatted = formatGuess();
       addNewGuess(formatted);
     }
@@ -89,8 +115,17 @@ const useWordle = (solution) => {
       }
     }
   };
+  const handleMouseDown = (text) => {
+    if (/^[A-Za-z]$/.test(text)) {
+      if (currentGuess.length < 5) {
+        setCurrentGuess((prev) => {
+          return prev + text;
+        });
+      }
+    }
+  }
 
-  return { turn, currentGuess, guesses, isCorrect, handleKeyup, addNewGuess };
+  return { turn, currentGuess, guesses, isCorrect, usedKeys, handleKeyup, handleMouseDown, addNewGuess };
 };
 
 export default useWordle;
