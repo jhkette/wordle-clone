@@ -13,21 +13,18 @@ function App() {
         const randomSolution = json[Math.floor(Math.random() * json.length)];
         setSolution(randomSolution.word);
       });
-      fetch("http://localhost:3001/words")
+    fetch("http://localhost:3001/words")
       .then((res) => res.json())
       .then((dict) => {
-      
         setDictionary(dict);
       });
   }, [setSolution, setDictionary]);
 
-
   return (
-  
     <div className="App">
       <h1>Wordle</h1>
       {/* wordle solution added as prop */}
-      {solution && <Wordle solution={solution} dictionary={dictionary}/>}
+      {solution && <Wordle solution={solution} dictionary={dictionary} />}
     </div>
   );
 }
