@@ -87,29 +87,31 @@ const useWordle = (solution, dictionary) => {
         setError("you used all your guesses");
         setTimeout(() => {
           setError(null);
-        },3000)
-        
+        }, 3000);
+
         return;
       }
       if (history.includes(currentGuess)) {
         setError("you already tried that word");
         setTimeout(() => {
           setError(null);
-        },3000)
+        }, 3000);
         return;
       }
       if (currentGuess.length !== 5) {
         setError("word must be 5 chars long");
         setTimeout(() => {
           setError(null);
-        },3000)
+        }, 3000);
         return;
       }
-      if (!dictionary.includes(currentGuess)) {
+
+      if (dictionary.includes(currentGuess) === false) {
+        console.log(dictionary)
         setError("must be a word");
         setTimeout(() => {
           setError(null);
-        },3000)
+        }, 3000);
         return;
       }
       const formatted = formatGuess();
@@ -136,6 +138,11 @@ const useWordle = (solution, dictionary) => {
           return prev + text;
         });
       }
+    }
+    if (text == "⌫") {
+      setCurrentGuess((prev) => {
+        return prev.slice(0, -1);
+      });
     }
   };
 
