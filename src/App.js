@@ -20,13 +20,18 @@ function App() {
       });
   }, [setSolution, setDictionary]);
 
-  return (
-    <div className="App">
-      <h1>Wordle</h1>
-      {/* wordle solution added as prop */}
-      {solution && <Wordle solution={solution} dictionary={dictionary} />}
-    </div>
-  );
-}
+
+    return (
+      
+      <div className="App">
+        <h1>Wordle</h1>
+        {/* wordle solution added as prop */}
+       <Wordle solution={solution} dictionary={dictionary} />
+        
+      </div>
+    );
+
+  }
+
 
 export default App;

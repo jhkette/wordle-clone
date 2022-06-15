@@ -6,7 +6,8 @@ const useWordle = (solution, dictionary) => {
   const [guesses, setGuesses] = useState([...Array(6)]); // each guess is an array
   const [history, setHistory] = useState([]); // each guess is a string
   const [isCorrect, setIsCorrect] = useState(false); // state for if guess is correct
-  const [usedKeys, setUsedKeys] = useState({}) // {a: 'green', b: 'yellow'}
+  const [usedKeys, setUsedKeys] = useState({}); // {a: 'green', b: 'yellow'}
+  const [error, setError] = useState(null); // {a: 'green', b: 'yellow'}
 
   // format a guess into an array of letter objects. This function is called
   // when the user presses enter and the guess is a valid guess
@@ -54,26 +55,26 @@ const useWordle = (solution, dictionary) => {
     setTurn((prevTurn) => {
       return prevTurn + 1;
     });
-    setUsedKeys(prevUsedKeys => {
-      formattedGuess.forEach(l => {
-        const currentColor = prevUsedKeys[l.key]
+    setUsedKeys((prevUsedKeys) => {
+      formattedGuess.forEach((l) => {
+        const currentColor = prevUsedKeys[l.key];
 
-        if (l.color === 'green') {
-          prevUsedKeys[l.key] = 'green'
-          return
+        if (l.color === "green") {
+          prevUsedKeys[l.key] = "green";
+          return;
         }
-        if (l.color === 'yellow' && currentColor !== 'green') {
-          prevUsedKeys[l.key] = 'yellow'
-          return
+        if (l.color === "yellow" && currentColor !== "green") {
+          prevUsedKeys[l.key] = "yellow";
+          return;
         }
-        if (l.color === 'grey' && currentColor !== ('green' || 'yellow')) {
-          prevUsedKeys[l.key] = 'grey'
-          return
+        if (l.color === "grey" && currentColor !== ("green" || "yellow")) {
+          prevUsedKeys[l.key] = "grey";
+          return;
         }
-      })
+      });
 
-      return prevUsedKeys
-    })
+      return prevUsedKeys;
+    });
     setCurrentGuess("");
   };
 
@@ -81,22 +82,35 @@ const useWordle = (solution, dictionary) => {
   // if user presses enter, add the new guess (if the guess is valid)
   const handleKeyup = ({ key }) => {
     if (key == "Enter") {
-      console.log(dictionary)
+      console.log(dictionary);
       if (turn > 5) {
-        console.log("you used all your guesses");
+        setError("you used all your guesses");
+        setTimeout(() => {
+          setError(null);
+        },3000)
+        
         return;
       }
       if (history.includes(currentGuess)) {
-        console.log("you already tried that word");
+        setError("you already tried that word");
+        setTimeout(() => {
+          setError(null);
+        },3000)
         return;
       }
       if (currentGuess.length !== 5) {
-        console.log("word must be 5 chars long");
+        setError("word must be 5 chars long");
+        setTimeout(() => {
+          setError(null);
+        },3000)
         return;
       }
-      if(!dictionary.includes(currentGuess)){
-        console.log('must be a word')
-        return
+      if (!dictionary.includes(currentGuess)) {
+        setError("must be a word");
+        setTimeout(() => {
+          setError(null);
+        },3000)
+        return;
       }
       const formatted = formatGuess();
       addNewGuess(formatted);
@@ -123,9 +137,19 @@ const useWordle = (solution, dictionary) => {
         });
       }
     }
-  }
+  };
 
-  return { turn, currentGuess, guesses, isCorrect, usedKeys, handleKeyup, handleMouseDown, addNewGuess };
+  return {
+    turn,
+    currentGuess,
+    guesses,
+    isCorrect,
+    usedKeys,
+    error,
+    handleKeyup,
+    handleMouseDown,
+    addNewGuess,
+  };
 };
 
 export default useWordle;
