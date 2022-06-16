@@ -22,7 +22,7 @@ const useWordle = (solution, dictionary) => {
     // check if foreach solutionArray[i] == l.key
     // then add color green to each color if this is true
     formattedGuess.forEach((l, i) => {
-      if (solutionArray[i] == l.key) {
+      if (solutionArray[i] === l.key) {
         formattedGuess[i].color = "green";
         solutionArray[i] = null;
       }
@@ -81,7 +81,7 @@ const useWordle = (solution, dictionary) => {
   // handle keyup event & track current guess
   // if user presses enter, add the new guess (if the guess is valid)
   const handleKeyup = ({ key }) => {
-    if (key == "Enter") {
+    if (key === "Enter") {
       console.log(dictionary);
       if (turn > 5) {
         setError("you used all your guesses");
@@ -107,7 +107,7 @@ const useWordle = (solution, dictionary) => {
       }
 
       if (dictionary.includes(currentGuess) === false) {
-        console.log(dictionary)
+        console.log(dictionary);
         setError("must be a word");
         setTimeout(() => {
           setError(null);
@@ -117,7 +117,7 @@ const useWordle = (solution, dictionary) => {
       const formatted = formatGuess();
       addNewGuess(formatted);
     }
-    if (key == "Backspace") {
+    if (key === "Backspace") {
       setCurrentGuess((prev) => {
         return prev.slice(0, -1);
       });
@@ -139,7 +139,7 @@ const useWordle = (solution, dictionary) => {
         });
       }
     }
-    if (text == "⌫") {
+    if (text === "⌫") {
       setCurrentGuess((prev) => {
         return prev.slice(0, -1);
       });

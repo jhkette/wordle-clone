@@ -31,12 +31,12 @@ export default function Wordle({ solution, dictionary }) {
     }
     // remove event listener
     return () => window.removeEventListener("keyup", handleKeyup);
-  }, [handleKeyup, isCorrect]);
+  }, [handleKeyup, isCorrect, turn]);
 
   if (dictionary && solution) {
     return (
-      <div>
-        {solution}
+      <div className="main">
+       
         <p className="error">{error}</p>
         <Grid currentGuess={currentGuess} guesses={guesses} turn={turn} />
         <Keypad
