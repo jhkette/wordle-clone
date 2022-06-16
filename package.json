@@ -16,7 +16,7 @@
     "start": "react-scripts start",
     "db": "json-server ./data/db.json --port 3001",
     "dev": "concurrently --kill-others \"npm run start\" \"npm run db\"",
-    "build": "concurrently  --kill-others \"react-scripts build\" \"npm run db\"",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
