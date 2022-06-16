@@ -7,7 +7,7 @@ const useWordle = (solution, dictionary) => {
   const [history, setHistory] = useState([]); // each guess is a string
   const [isCorrect, setIsCorrect] = useState(false); // state for if guess is correct
   const [usedKeys, setUsedKeys] = useState({}); // {a: 'green', b: 'yellow'}
-  const [error, setError] = useState(null); // {a: 'green', b: 'yellow'}
+  const [error, setError] = useState(false); // {a: 'green', b: 'yellow'}
 
   // format a guess into an array of letter objects. This function is called
   // when the user presses enter and the guess is a valid guess
@@ -86,7 +86,7 @@ const useWordle = (solution, dictionary) => {
       if (turn > 5) {
         setError("you used all your guesses");
         setTimeout(() => {
-          setError(null);
+          setError(false);
         }, 3000);
 
         return;
@@ -94,14 +94,14 @@ const useWordle = (solution, dictionary) => {
       if (history.includes(currentGuess)) {
         setError("you already tried that word");
         setTimeout(() => {
-          setError(null);
+          setError(false);
         }, 3000);
         return;
       }
       if (currentGuess.length !== 5) {
         setError("word must be 5 chars long");
         setTimeout(() => {
-          setError(null);
+          setError(false);
         }, 3000);
         return;
       }
@@ -110,7 +110,7 @@ const useWordle = (solution, dictionary) => {
         console.log(dictionary);
         setError("must be a word");
         setTimeout(() => {
-          setError(null);
+          setError(false);
         }, 3000);
         return;
       }

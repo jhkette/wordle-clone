@@ -24,7 +24,7 @@ function App() {
 
   return (
     <div className="App">
-      {solution}
+  
       <h1>Wordle</h1>
     
       {/* wordle solution added as prop */}

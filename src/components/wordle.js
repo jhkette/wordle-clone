@@ -36,8 +36,8 @@ export default function Wordle({ solution, dictionary }) {
   if (dictionary && solution) {
     return (
       <div className="main">
-       
-        <p className="error">{error}</p>
+     
+        <div className={error ? "error" : "error hide"}>{error}</div>
         <Grid currentGuess={currentGuess} guesses={guesses} turn={turn} />
         <Keypad
           usedKeys={usedKeys}
@@ -46,6 +46,7 @@ export default function Wordle({ solution, dictionary }) {
         {showModal && (
           <Modal isCorrect={isCorrect} turn={turn} solution={solution} />
         )}
+       
       </div>
     );
   } else {
