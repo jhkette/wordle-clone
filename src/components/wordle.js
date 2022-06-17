@@ -38,7 +38,7 @@ export default function Wordle({ solution, dictionary }) {
       <div className="main">
      
         <div className={error ? "error" : "error hide"}>{error}</div>
-        <Grid currentGuess={currentGuess} guesses={guesses} turn={turn} />
+        <Grid currentGuess={currentGuess} guesses={guesses} turn={turn} error={error} />
         <Keypad
           usedKeys={usedKeys}
           onPress={(e) => handleMouseDown(e.target.textContent)}

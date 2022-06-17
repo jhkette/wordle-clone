@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Row({ guess, currentGuess }) {
+export default function Row({ guess, currentGuess, error }) {
   // if guess is a prop
   // map through guess l (the guess object) and i the index
   if (guess) {
@@ -21,7 +21,7 @@ export default function Row({ guess, currentGuess }) {
     let letters = currentGuess.split("");
     console.log(letters, "letters");
     return (
-      <div className="row current">
+      <div className={ error ? "row current wrong" : "row current"}>
         {/* map through letters */}
         {letters.map((letter, i) => (
           <div key={i} className="filled">
