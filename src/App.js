@@ -6,7 +6,9 @@ function App() {
   const [dictionary, setDictionary] = useState(null);
   // fetch solutions
   useEffect(() => {
+   
     fetch("https://fakeserver-j.herokuapp.com/solutions")
+    
       .then((res) => res.json())
       .then((json) => {
         // random int between 0 & 14

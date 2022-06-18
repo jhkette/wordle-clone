@@ -11,22 +11,20 @@ const useWordle = (solution, dictionary) => {
 
   const countFunc = (arr) => {
     const counts = {};
-    for (const num of arr ) {
+    for (const num of arr) {
       counts[num] = counts[num] ? counts[num] + 1 : 1;
     }
-    console.log(`This is counts`)
-    console.log(counts)
-    return counts
-  }
- 
+    console.log(`This is counts`);
+    console.log(counts);
+    return counts;
+  };
+
   // format a guess into an array of letter objects. This function is called
   // when the user presses enter and the guess is a valid guess
   // e.g. [{key: 'a', color: 'yellow'}]
   const formatGuess = () => {
     //   solutionArray - solution into array to split word
     let solutionArray = [...solution];
-
-
 
     // formattedGuess key is the letter and color is grey
     let formattedGuess = [...currentGuess].map((l) => {
@@ -35,8 +33,6 @@ const useWordle = (solution, dictionary) => {
     // check if foreach solutionArray[i] == l.key
     // then add color green to each color if this is true
     formattedGuess.forEach((l, i) => {
-
-
       if (solutionArray[i] === l.key) {
         formattedGuess[i].color = "green";
         // solutionArray[i] = null;
@@ -46,22 +42,20 @@ const useWordle = (solution, dictionary) => {
     // letter array but not in place so make it yellow
     formattedGuess.forEach((l, i) => {
       if (solutionArray.includes(l.key) && l.color !== "green") {
-
-        const x =countFunc(solutionArray)
-        const y =countFunc(currentGuess)
-       
+        const x = countFunc(solutionArray);
+        const y = countFunc(currentGuess);
 
         // const yellows = formattedGuess.values.filter((col) => col == "yellow").length
-        
-        if(x[l.key] <= y[l.key]){
-        formattedGuess[i].color = "yellow";
 
+        if (x[l.key] <= y[l.key]) {
+          formattedGuess[i].color = "yellow";
         }
         // const final=Object.values(formattedGuess).filter((letter) => solutionArray.includes(letter.key))
-        
-        // const yellow= 
-        
+
+        // const yellow=
+
         solutionArray[i] = null;
+        console.log(solutionArray)
       }
     });
     return formattedGuess;
