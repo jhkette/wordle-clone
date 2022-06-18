@@ -9,12 +9,25 @@ const useWordle = (solution, dictionary) => {
   const [usedKeys, setUsedKeys] = useState({}); // {a: 'green', b: 'yellow'}
   const [error, setError] = useState(false); // {a: 'green', b: 'yellow'}
 
+  const countFunc = (arr) => {
+    const counts = {};
+    for (const num of arr ) {
+      counts[num] = counts[num] ? counts[num] + 1 : 1;
+    }
+    console.log(`This is counts`)
+    console.log(counts)
+    return counts
+  }
+ 
   // format a guess into an array of letter objects. This function is called
   // when the user presses enter and the guess is a valid guess
   // e.g. [{key: 'a', color: 'yellow'}]
   const formatGuess = () => {
     //   solutionArray - solution into array to split word
     let solutionArray = [...solution];
+
+
+
     // formattedGuess key is the letter and color is grey
     let formattedGuess = [...currentGuess].map((l) => {
       return { key: l, color: "grey" };
@@ -22,16 +35,33 @@ const useWordle = (solution, dictionary) => {
     // check if foreach solutionArray[i] == l.key
     // then add color green to each color if this is true
     formattedGuess.forEach((l, i) => {
+
+
       if (solutionArray[i] === l.key) {
         formattedGuess[i].color = "green";
-        solutionArray[i] = null;
+        // solutionArray[i] = null;
       }
     });
     // if solutionArray includes l.key and is not green it is in
     // letter array but not in place so make it yellow
     formattedGuess.forEach((l, i) => {
       if (solutionArray.includes(l.key) && l.color !== "green") {
+
+        const x =countFunc(solutionArray)
+        const y =countFunc(currentGuess)
+       
+
+        // const yellows = formattedGuess.values.filter((col) => col == "yellow").length
+        
+        if(x[l.key] <= y[l.key]){
         formattedGuess[i].color = "yellow";
+
+        }
+        // const final=Object.values(formattedGuess).filter((letter) => solutionArray.includes(letter.key))
+        
+        // const yellow= 
+        
+        solutionArray[i] = null;
       }
     });
     return formattedGuess;

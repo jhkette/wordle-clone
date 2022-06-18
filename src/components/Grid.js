@@ -1,9 +1,7 @@
 import React from "react";
 import Row from "./Row";
 
-
 export default function Grid({ currentGuess, guesses, turn, error }) {
-
   return (
     <div className="">
       {guesses.map((g, i) => {

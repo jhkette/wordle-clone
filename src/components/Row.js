@@ -4,7 +4,7 @@ export default function Row({ guess, currentGuess, error }) {
   // if guess is a prop
   // map through guess l (the guess object) and i the index
   if (guess) {
-    console.log(guess, "guess");
+
     return (
       <div className="row past">
         {/* map through guess color and key - which is the letter */}
@@ -19,7 +19,7 @@ export default function Row({ guess, currentGuess, error }) {
   // currentGuess is letters typed in - so if currentGuess
   if (currentGuess) {
     let letters = currentGuess.split("");
-    console.log(letters, "letters");
+   
     return (
       <div className={ error ? "row current wrong" : "row current"}>
         {/* map through letters */}
