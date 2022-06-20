@@ -7,7 +7,7 @@ function App() {
   // fetch solutions
   useEffect(() => {
    
-    fetch("http://localhost:3001/solutions")
+    fetch("https://fakeserver-j.herokuapp.com/solutions")
     
       .then((res) => res.json())
       .then((json) => {
