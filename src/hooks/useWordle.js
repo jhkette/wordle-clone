@@ -45,32 +45,26 @@ const useWordle = (solution, dictionary) => {
       }
     });
 
-
     // if solutionArray includes l.key and is not green it is in
     // letter array but not in place so make it yellow
     formattedGuess.forEach((l, i) => {
-      const c ={}
+      const c = {};
       if (solutionArray.includes(l.key) && l.color !== "green") {
-
-       
-        const sol = countFunc(solutionArray)
-        for (var arr of formattedGuess){
+        const sol = countFunc(solutionArray);
+        for (var arr of formattedGuess) {
           // counts[num] = counts[num] ? counts[num] + 1 : 1;
-          if (arr.color == "yellow" && arr.key == l.key){
-            c[l.key] = c[l.key] ?  c[l.key] + 1 : 1;
+          if (arr.color === "yellow" && arr.key === l.key) {
+            c[l.key] = c[l.key] ? c[l.key] + 1 : 1;
           }
-         }
-   
-         if ((c[l.key] == null) || (c[l.key] < sol[l.key])){
-         formattedGuess[i].color = "yellow";
-         }
-        console.log(c, sol )
-      
-       
-        
+        }
+
+        if (c[l.key] == null || c[l.key] < sol[l.key]) {
+          formattedGuess[i].color = "yellow";
+        }
+        console.log(c, sol);
       }
     });
-   
+
     return formattedGuess;
   };
 
@@ -119,7 +113,6 @@ const useWordle = (solution, dictionary) => {
   // if user presses enter, add the new guess (if the guess is valid)
   const handleKeyup = ({ key }) => {
     if (key === "Enter") {
-    
       if (turn > 5) {
         setError("you used all your guesses");
         setTimeout(() => {
@@ -144,7 +137,6 @@ const useWordle = (solution, dictionary) => {
       }
 
       if (dictionary.includes(currentGuess) === false) {
-      
         setError("must be a word");
         setTimeout(() => {
           setError(false);
