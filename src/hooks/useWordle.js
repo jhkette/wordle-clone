@@ -64,7 +64,7 @@ const useWordle = (solution, dictionary) => {
          if ((c[l.key] == null) || (c[l.key] < sol[l.key])){
          formattedGuess[i].color = "yellow";
          }
-        
+        console.log(c, sol )
       
        
         
