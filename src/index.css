@@ -58,13 +58,13 @@ h1 {
   font-size: 2.5rem;
 }
 .row > div.green {
-  --background: #5ac85a;
-  --border-color: #5ac85a;
+  --background: #6aa964;
+  --border-color: #6aa964;
   animation: flip 0.5s ease forwards;
 }
 .row > div.grey {
-  --background: #a1a1a1;
-  --border-color: #a1a1a1;
+  --background: #787c7e;
+  --border-color: #787c7e;
   animation: flip 0.6s ease forwards;
 }
 .row > div.yellow {
@@ -94,9 +94,9 @@ h1 {
 }
 .keypad > div {
   margin: 5px;
-  width: 38px;
-  height: 50px;
-  background: #eee;
+  width: 40px;
+  height: 52px;
+  background: #d3d6da;
   display: inline-block;
   border-radius: 6px;
   line-height: 50px;
@@ -104,7 +104,7 @@ h1 {
   font-size: 1.1rem;
 }
 .keypad > div.green {
-  background: #5ac85a;
+  background: #6aa964;
   color: #fff;
   transition: all 0.3s ease-in;
 }
@@ -114,7 +114,7 @@ h1 {
   transition: all 0.3s ease-in;
 }
 .keypad > div.grey {
-  background: #a1a1a1;
+  background: #787c7e;
   color: #fff;
   transition: all 0.3s ease-in;
 }
