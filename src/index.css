@@ -156,17 +156,17 @@ h1 {
 }
 .error {
   position: absolute;
-  top: 10px;
+  top: -30px;
   transition: opacity 1s;
   transition: background-color 1s;
-  left: calc(69% - 75px);
+  left: calc(50% - 75px);
   width: 150px;
   padding: 9px 12px;
   font-size: 1.05rem;
   opacity: 1;
-  color: #333;
+  color: white;
   z-index: 10;
-  background-color: #fd7a7a;
+  background-color: #323232d9;
   border-radius: .5rem;
   display: flex;
   align-items: center;

@@ -3,7 +3,7 @@ import Row from "./Row";
 
 export default function Grid({ currentGuess, guesses, turn, error }) {
   return (
-    <div className="">
+    <div className="grid">
       {guesses.map((g, i) => {
         // if turn === i then pass in currentGuess as a prop
         if (turn === i) {
