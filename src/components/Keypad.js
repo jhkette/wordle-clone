@@ -27,11 +27,13 @@ export default function Keypad({ usedKeys, onPress }) {
     {"key": "l"},
     {"key": "z"},
     {"key": "x"},
+    
     {"key": "c"},
     {"key": "v"},
     {"key": "b"},
     {"key": "n"},
-    {"key": "m"}
+    {"key": "m"},
+    {"key": "⏎"}
   ]
 
   return (

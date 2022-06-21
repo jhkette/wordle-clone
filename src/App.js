@@ -31,6 +31,7 @@ function App() {
     
       {/* wordle solution added as prop */}
       <Wordle solution={solution} dictionary={dictionary} />
+      <p className="note"><em>Nb. This is a wordle clone simply to see if I can develop it in React. The real one is over <a href="https://www.nytimes.com/games/wordle/index.html">here</a></em></p>
     </div>
   );
 }
