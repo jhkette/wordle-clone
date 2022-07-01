@@ -9,6 +9,8 @@ const useWordle = (solution, dictionary) => {
   const [usedKeys, setUsedKeys] = useState({}); // {a: 'green', b: 'yellow'}
   const [error, setError] = useState(false); // {a: 'green', b: 'yellow'}
 
+
+  // countfunction helper function
   const countFunc = (arr) => {
     const counts = {};
     for (const num of arr) {
@@ -16,6 +18,49 @@ const useWordle = (solution, dictionary) => {
     }
     return counts;
   };
+ 
+  // guesscheck helper function
+  const guessCheck = () => {
+    if (turn > 5) {
+      setError("you used all your guesses");
+      setTimeout(() => {
+        setError(false);
+      }, 3000);
+
+      return;
+    }
+    if (history.includes(currentGuess)) {
+      setError("you already tried that word");
+      setTimeout(() => {
+        setError(false);
+      }, 3000);
+      return;
+    }
+    if (currentGuess.length !== 5) {
+      setError("word must be 5 chars long");
+      setTimeout(() => {
+        setError(false);
+      }, 3000);
+      return;
+    }
+
+    if (dictionary.includes(currentGuess) === false) {
+      setError("must be a word");
+      setTimeout(() => {
+        setError(false);
+      }, 3000);
+      return;
+    }
+    const formatted = formatGuess();
+    addNewGuess(formatted);
+  };
+
+
+
+  
+
+
+
 
   // format a guess into an array of letter objects. This function is called
   // when the user presses enter and the guess is a valid guess
@@ -108,46 +153,12 @@ const useWordle = (solution, dictionary) => {
     setCurrentGuess("");
   };
 
-  const guessCheck = () => {
-    if (turn > 5) {
-      setError("you used all your guesses");
-      setTimeout(() => {
-        setError(false);
-      }, 3000);
-
-      return;
-    }
-    if (history.includes(currentGuess)) {
-      setError("you already tried that word");
-      setTimeout(() => {
-        setError(false);
-      }, 3000);
-      return;
-    }
-    if (currentGuess.length !== 5) {
-      setError("word must be 5 chars long");
-      setTimeout(() => {
-        setError(false);
-      }, 3000);
-      return;
-    }
-
-    if (dictionary.includes(currentGuess) === false) {
-      setError("must be a word");
-      setTimeout(() => {
-        setError(false);
-      }, 3000);
-      return;
-    }
-    const formatted = formatGuess();
-    addNewGuess(formatted);
-  }
-
+  
   // handle keyup event & track current guess
   // if user presses enter, add the new guess (if the guess is valid)
   const handleKeyup = ({ key }) => {
     if (key === "Enter") {
-      guessCheck()
+      guessCheck();
     }
     if (key === "Backspace") {
       setCurrentGuess((prev) => {
@@ -177,7 +188,7 @@ const useWordle = (solution, dictionary) => {
       });
     }
     if (text === "⏎") {
-      guessCheck()
+      guessCheck();
     }
   };
 
