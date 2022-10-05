@@ -50,6 +50,6 @@ export default function Wordle({ solution, dictionary }) {
       </div>
     );
   } else {
-    return <p>Loading....(please wait a few seconds as I'm using a free heroku server)</p>;
+    return <p className="loading">Loading....(please wait a few seconds as I'm using a free heroku server)</p>;
   }
 }
