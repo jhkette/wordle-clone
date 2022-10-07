@@ -176,9 +176,10 @@ const useWordle = (solution, dictionary) => {
   };
   const handleMouseDown = (text) => {
     if (/^[A-Za-z]$/.test(text)) {
+      const lowerText = text.toLowerCase()
       if (currentGuess.length < 5) {
         setCurrentGuess((prev) => {
-          return prev + text;
+          return prev + lowerText;
         });
       }
     }
