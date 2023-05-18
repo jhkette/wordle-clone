@@ -7,7 +7,7 @@ function App() {
   // fetch solutions
   useEffect(() => {
    
-    fetch("https://fakeserver-j.herokuapp.com/solutions")
+    fetch("https://indigo-shark-sock.cyclic.app/solutions/solutions")
     
       .then((res) => res.json())
       .then((json) => {
@@ -15,7 +15,7 @@ function App() {
         const randomSolution = json[Math.floor(Math.random() * json.length)];
         setSolution(randomSolution.word);
       });
-    fetch("https://fakeserver-j.herokuapp.com/words")
+    fetch("https://indigo-shark-sock.cyclic.app/solutions/words")
       .then((res) => res.json())
       .then((dict) => {
         setDictionary(dict);
