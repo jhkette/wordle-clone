@@ -7,7 +7,7 @@ function App() {
   // fetch solutions
   useEffect(() => {
    
-    fetch("https://indigo-shark-sock.cyclic.app/solutions/solutions")
+    fetch("https://indigo-shark-sock.cyclic.app/solutions/")
     
       .then((res) => res.json())
       .then((json) => {
