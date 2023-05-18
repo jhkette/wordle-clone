@@ -8,6 +8,8 @@ const useWordle = (solution, dictionary) => {
   const [isCorrect, setIsCorrect] = useState(false); // state for if guess is correct
   const [usedKeys, setUsedKeys] = useState({}); // {a: 'green', b: 'yellow'}
   const [error, setError] = useState(false); // {a: 'green', b: 'yellow'}
+  
+
 
 
   // countfunction helper function

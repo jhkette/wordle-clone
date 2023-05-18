@@ -15,7 +15,7 @@ function App() {
         const randomSolution = json[Math.floor(Math.random() * json.length)];
         setSolution(randomSolution.word);
       });
-    fetch("https://indigo-shark-sock.cyclic.app/solutions/words")
+    fetch("https://indigo-shark-sock.cyclic.app/words")
       .then((res) => res.json())
       .then((dict) => {
         setDictionary(dict);
