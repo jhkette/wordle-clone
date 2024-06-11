@@ -7,7 +7,7 @@ function App() {
   // fetch solutions
   useEffect(() => {
    
-    fetch("https://indigo-shark-sock.cyclic.app/solutions/")
+    fetch("https://jsonserver-wordle.onrender.com/solutions/")
     
       .then((res) => res.json())
       .then((json) => {
@@ -15,7 +15,7 @@ function App() {
         const randomSolution = json[Math.floor(Math.random() * json.length)];
         setSolution(randomSolution.word);
       });
-    fetch("https://indigo-shark-sock.cyclic.app/words")
+    fetch("https://jsonserver-wordle.onrender.com/words")
       .then((res) => res.json())
       .then((dict) => {
         setDictionary(dict);
